@@ -181,11 +181,29 @@
   .w-\[118px\] {
     width: 118px;
   }
+  .w-\[318px\] {
+    width: 318px;
+  }
+  .w-\[320px\] {
+    width: 320px;
+  }
+  .w-\[322px\] {
+    width: 322px;
+  }
   .w-full {
     width: 100%;
   }
+  .shrink-0 {
+    flex-shrink: 0;
+  }
   .flex-col {
     flex-direction: column;
+  }
+  .flex-row {
+    flex-direction: row;
+  }
+  .flex-nowrap {
+    flex-wrap: nowrap;
   }
   .items-center {
     align-items: center;
@@ -195,6 +213,12 @@
   }
   .gap-\[5px\] {
     gap: 5px;
+  }
+  .gap-\[10px\] {
+    gap: 10px;
+  }
+  .overflow-x-scroll {
+    overflow-x: scroll;
   }
   .rounded-full {
     border-radius: calc(infinity * 1px);
