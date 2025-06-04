@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./output.css" rel="stylesheet" />
+    <title>Appointments</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="flex h-screen font-sans">
+    <aside
+      id="receptionistNavBar"
+      class="hidden md:w-[200px] lg:w-[250px] bg-[#2c698d] text-white md:flex md:flex-col justify-between"
+    >
+      <div>
+        <div class="flex flex-col items-center md:py-6">
+          <img
+            src="../pictures/Doctor.png"
+            alt="A Doctor pic"
+            class="w-20 h-20 md:mb-2 rounded-full"
+          />
+          <p class="text-md">Have A Nice Day</p>
+          <h1 class="font-bold">Receptionist</h1>
+        </div>
+        <nav class="px-4 gap-[10px]">
+          <a
+            href="receptionistpage.html"
+            class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
+          >
+            <span class="material-icons">home</span>
+            <span>Home</span>
+          </a>
+          <a
+            href="#"
+            class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
+          >
+            <span class="material-icons">person_add</span>
+            <span>New Patient</span>
+          </a>
+          <a
+            href="#"
+            class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
+          >
+            <span class="material-icons">payment</span>
+            <span>Payments</span>
+          </a>
+          <a
+            href="#"
+            class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
+          >
+            <span class="material-icons">money</span>
+            <span>Expenses</span>
+          </a>
+        </nav>
+      </div>
+      <div class="px-4">
+        <a
+          href="index.html"
+          class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            class="w-5 h-5"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v1"
+            />
+          </svg>
+          <span>Sign Out</span>
+        </a>
+      </div>
+    </aside>
+
+    <main class="flex-1 bg-gray-100 p-8">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-3xl font-semibold text-[#2c3e50]">Appointments</h2>
+        <select
+          id="date-filter"
+          class="border border-gray-300 rounded px-3 py-1"
+        >
+          <option value="today">Today</option>
+          <option value="week">This Week</option>
+          <option value="custom">Custom Range</option>
+        </select>
+      </div>
+
+      <div class="bg-white shadow rounded-lg overflow-hidden">
+        <table class="w-full text-left">
+          <thead class="bg-gray-200">
+            <tr>
+              <th class="p-3">Patient</th>
+              <th class="p-3">Date</th>
+              <th class="p-3">Time</th>
+              <th class="p-3">Dentist</th>
+              <th class="p-3">Status</th>
+              <th class="p-3">Action</th>
+            </tr>
+          </thead>
+          <tbody id="appointment-body">
+            <!-- Rows will be dynamically inserted here -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Floating Button -->
+      <button
+        id="new-appointment-btn"
+        class="fixed bottom-6 right-6 bg-[#2c698d] text-white px-4 py-2 rounded-full flex items-center shadow-lg hover:bg-[#1e4f66]"
+      >
+        <span class="text-xl mr-2">+</span>
+        New Appointment
+      </button>
+    </main>
+
+    <!-- Modal -->
+    <div
+      id="appointment-modal"
+      class="fixed inset-0 bg-black bg-opacity-50 items-center justify-center z-50 hidden"
+    >
+      <div class="bg-white rounded-lg shadow-lg w-full max-w-md p-6 relative">
+        <h3 class="text-xl font-semibold mb-4 text-[#2c3e50]">
+          New Appointment
+        </h3>
+        <button
+          id="close-modal"
+          class="absolute top-3 right-4 text-gray-500 hover:text-gray-700 text-xl"
+        >
+          &times;
+        </button>
+
+        <form id="new-appointment-form" class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700"
+              >Patient Name</label
+            >
+            <input
+              type="text"
+              class="w-full border px-3 py-2 rounded mt-1"
+              required
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Date</label>
+            <input
+              type="date"
+              class="w-full border px-3 py-2 rounded mt-1"
+              required
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Time</label>
+            <input
+              type="time"
+              class="w-full border px-3 py-2 rounded mt-1"
+              required
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700"
+              >Dentist</label
+            >
+            <input
+              type="text"
+              class="w-full border px-3 py-2 rounded mt-1"
+              required
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700"
+              >Status</label
+            >
+            <select class="w-full border px-3 py-2 rounded mt-1" required>
+              <option>Confirmed</option>
+              <option>Pending</option>
+              <option>Completed</option>
+              <option>Canceled</option>
+            </select>
+          </div>
+          <button
+            type="submit"
+            class="bg-[#2c698d] text-white px-4 py-2 rounded hover:bg-[#1e4f66]"
+          >
+            Save Appointment
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </body>
+</html>
