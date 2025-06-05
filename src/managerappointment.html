@@ -6,6 +6,10 @@
     <link href="./output.css" rel="stylesheet" />
     <title>Appointments</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
   </head>
   <body class="flex h-screen font-sans">
     <aside
@@ -30,11 +34,37 @@
             <span class="material-icons">home</span><span>Home</span>
           </a>
           <a
-            href="#"
+            href="managerappointment.html"
+            class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
+          >
+            <span class="material-icons">event_note</span
+            ><span>Appointments</span>
+          </a>
+          <a
+            href="managernewpatient.html"
             class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
           >
             <span class="material-icons">person_add</span
             ><span>New Patient</span>
+          </a>
+          <a
+            href="#"
+            class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
+          >
+            <span class="material-icons">format_list_bulleted</span
+            ><span>Patients List</span>
+          </a>
+          <a
+            href="#"
+            class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
+          >
+            <span class="material-icons">group</span><span>Users</span>
+          </a>
+          <a
+            href="#"
+            class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
+          >
+            <span class="material-icons">mail</span><span>Inbox</span>
           </a>
           <a
             href="#"
@@ -48,12 +78,6 @@
           >
             <span class="material-icons">money</span><span>Expenses</span>
           </a>
-          <a
-            href="#"
-            class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
-          >
-            <span class="material-icons">group</span><span>Users</span>
-          </a>
         </nav>
       </div>
       <div class="px-4">
@@ -61,20 +85,7 @@
           href="index.html"
           class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            class="w-5 h-5"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v1"
-            />
-          </svg>
+          <span class="material-icons">logout</span>
           <span>Sign Out</span>
         </a>
       </div>
@@ -83,11 +94,23 @@
     <main class="flex-1 bg-gray-100 p-8">
       <div class="flex justify-between items-center mb-6">
         <h2 class="text-3xl font-semibold text-[#2c3e50]">Appointments</h2>
-        <select class="border border-gray-300 rounded px-3 py-1">
-          <option>Today</option>
-          <option>This Week</option>
-          <option>Custom Range</option>
+        <select
+          id="date-filter"
+          class="border border-gray-300 rounded px-3 py-1"
+        >
+          <option value="today">Today</option>
+          <option value="this-week">This Week</option>
+          <option value="custom">Custom Range</option>
         </select>
+      </div>
+
+      <div id="custom-range" class="mb-4 hidden">
+        <input
+          id="start-date"
+          type="date"
+          class="border px-2 py-1 rounded mr-2"
+        />
+        <input id="end-date" type="date" class="border px-2 py-1 rounded" />
       </div>
 
       <div class="bg-white shadow rounded-lg overflow-hidden">
@@ -98,11 +121,12 @@
               <th class="p-3">Date</th>
               <th class="p-3">Time</th>
               <th class="p-3">Dentist</th>
+              <th class="p-3">Treatment</th>
               <th class="p-3">Status</th>
               <th class="p-3">Action</th>
             </tr>
           </thead>
-          <tbody id="appointment-body">
+          <tbody id="appointment-table-body">
             <!-- Rows will be dynamically inserted here -->
           </tbody>
         </table>
@@ -133,12 +157,13 @@
           &times;
         </button>
 
-        <form id="new-appointment-form" class="space-y-4">
+        <form id="appointment-form" class="space-y-4">
           <div>
             <label class="block text-sm font-medium text-gray-700"
               >Patient Name</label
             >
             <input
+              id="patient-name"
               type="text"
               class="w-full border px-3 py-2 rounded mt-1"
               required
@@ -147,6 +172,7 @@
           <div>
             <label class="block text-sm font-medium text-gray-700">Date</label>
             <input
+              id="appointment-date"
               type="date"
               class="w-full border px-3 py-2 rounded mt-1"
               required
@@ -155,6 +181,7 @@
           <div>
             <label class="block text-sm font-medium text-gray-700">Time</label>
             <input
+              id="appointment-time"
               type="time"
               class="w-full border px-3 py-2 rounded mt-1"
               required
@@ -169,6 +196,18 @@
               class="w-full border px-3 py-2 rounded mt-1"
               required
             />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700"
+              >Treatment Type</label
+            >
+            <select class="w-full border px-3 py-2 rounded mt-1" required>
+              <option>Cleaning</option>
+              <option>Filling</option>
+              <option>Root Canal</option>
+              <option>Braces</option>
+              <option>Implant</option>
+            </select>
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700"
@@ -191,9 +230,6 @@
       </div>
     </div>
 
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
+    <script src="appointment.js"></script>
   </body>
 </html>
