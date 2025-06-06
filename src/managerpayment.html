@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="./output.css" rel="stylesheet" />
-    <title>Receptionist List</title>
+    <title>Payments</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -85,36 +85,45 @@
         </a>
       </div>
     </aside>
-
-    <main class="flex-1 bg-gray-100 p-8">
-      <div class="flex justify-between items-center mb-6">
-        <h1 class="text-3xl font-semibold text-[#2c3e50]">Users List</h1>
-      </div>
-      <div class="bg-white shadow rounded-lg overflow-hidden">
-        <table class="w-full text-left">
-          <thead class="bg-gray-200">
-            <tr>
-              <th class="p-3">User's Name</th>
-              <th class="p-3">ID</th>
-              <th class="p-3">Action</th>
-            </tr>
-          </thead>
-          <tbody id="user-table-body">
-            <!-- Rows will be dynamically inserted here -->
-          </tbody>
-        </table>
+    <!-- Main Content -->
+    <main class="flex-1 p-8 overflow-y-auto">
+      <!-- Logo and Header -->
+      <div class="text-center">
+        <h2 class="text-2xl font-bold mt-4">DentalCareHub</h2>
       </div>
 
-      <!-- Floating Button -->
-      <a href="newuser.html">
-        <button
-          id="new-user-btn"
-          class="fixed bottom-6 right-6 bg-[#2c698d] text-white px-4 py-2 rounded-full flex items-center shadow-lg hover:bg-[#1e4f66]"
-        >
-          <span class="text-xl mr-2">+</span> New user
-        </button>
-      </a>
+      <!-- Account Statement -->
+      <section
+        class="bg-white rounded-lg shadow-md mt-10 p-6 max-w-4xl mx-auto"
+      >
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-xl font-semibold text-[#2c6c88]">Payments</h2>
+          <button class="text-[#2c6c88] text-2xl">🧮</button>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-center">
+          <!-- Sessions -->
+          <div class="bg-blue-100 rounded-lg p-4 border-t-4 border-blue-500">
+            <div class="text-blue-700 font-semibold mb-1">
+              Number of Sessions
+            </div>
+            <div id="sessionCount" class="text-2xl font-bold text-blue-600">
+              0
+            </div>
+          </div>
+          <!-- Total Payment -->
+          <div class="bg-green-100 rounded-lg p-4 border-t-4 border-green-500">
+            <div class="text-green-700 font-semibold mb-1">Total Payment</div>
+            <div id="totalPayment" class="text-2xl font-bold text-green-600">
+              $0.00
+            </div>
+          </div>
+
+          <div id="errorMessage" class="text-red-600 text-sm mt-2"></div>
+        </div>
+      </section>
     </main>
+
     <!-- Users Modal -->
     <div
       id="usersModal"
@@ -157,6 +166,13 @@
         usersModal.classList.add("hidden");
         usersModal.classList.remove("flex");
       }
+
+      // Optional: close modal when clicking outside it
+      window.addEventListener("click", function (e) {
+        if (e.target === usersModal) {
+          closeUsersModal();
+        }
+      });
     </script>
   </body>
 </html>
