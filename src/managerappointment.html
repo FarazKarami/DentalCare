@@ -24,7 +24,7 @@
             class="w-20 h-20 md:mb-2 rounded-full"
           />
           <p class="text-md">Have A Nice Day</p>
-          <h1 class="font-bold">Manager</h1>
+          <h2 class="font-bold">Manager</h2>
         </div>
         <nav class="px-4 gap-[10px]">
           <a
@@ -48,7 +48,7 @@
             ><span>New Patient</span>
           </a>
           <a
-            href="#"
+            href="managerpatientlist.html"
             class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
           >
             <span class="material-icons">format_list_bulleted</span
@@ -56,15 +56,10 @@
           </a>
           <a
             href="#"
+            id="usersSidebarLink"
             class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
           >
             <span class="material-icons">group</span><span>Users</span>
-          </a>
-          <a
-            href="#"
-            class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
-          >
-            <span class="material-icons">mail</span><span>Inbox</span>
           </a>
           <a
             href="#"
@@ -229,7 +224,48 @@
         </form>
       </div>
     </div>
+    <!-- Users Modal -->
+    <div
+      id="usersModal"
+      class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50"
+    >
+      <div class="bg-white p-6 rounded-lg shadow-lg w-80">
+        <h3 class="text-xl font-semibold mb-4 text-center">User Options</h3>
+        <div class="flex flex-col space-y-3">
+          <a
+            href="newuser.html"
+            class="bg-[#2c698d] text-white text-center py-2 rounded hover:bg-[#1e4f66]"
+            >New User</a
+          >
+          <a
+            href="userlist.html"
+            class="bg-[#2c698d] text-white text-center py-2 rounded hover:bg-[#1e4f66]"
+            >Users List</a
+          >
+          <button
+            onclick="closeUsersModal()"
+            class="text-red-500 mt-2 hover:underline"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
 
-    <script src="appointment.js"></script>
+    <script>
+      const usersLink = document.getElementById("usersSidebarLink");
+      const usersModal = document.getElementById("usersModal");
+
+      usersLink.addEventListener("click", function (e) {
+        e.preventDefault(); // prevent default <a> behavior
+        usersModal.classList.remove("hidden");
+        usersModal.classList.add("flex");
+      });
+
+      function closeUsersModal() {
+        usersModal.classList.add("hidden");
+        usersModal.classList.remove("flex");
+      }
+    </script>
   </body>
 </html>

@@ -4,14 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="./output.css" rel="stylesheet" />
-    <title>New Patient</title>
+    <title>Receptionist List</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
   </head>
-  <body class="bg-gray-50 font-inter flex flex-col md:flex-row min-h-screen">
+  <body class="flex h-screen font-sans">
     <aside
       id="managerNavBar"
       class="hidden md:w-[250px] bg-[#2c698d] text-white md:flex md:flex-col justify-between"
@@ -85,93 +85,35 @@
         </a>
       </div>
     </aside>
-    <main class="flex-1 p-10">
-      <div class="text-center mb-8">
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/716/716784.png"
-          alt="folder"
-          class="mx-auto w-16 h-16"
-        />
-        <h2 class="text-3xl font-bold mt-4">DentalCareHub</h2>
-        <h1 class="text-xl font-semibold text-gray-700 mt-1">New Patient</h1>
+
+    <main class="flex-1 bg-gray-100 p-8">
+      <div class="flex justify-between items-center mb-6">
+        <h1 class="text-3xl font-semibold text-[#2c3e50]">Users List</h1>
+      </div>
+      <div class="bg-white shadow rounded-lg overflow-hidden">
+        <table class="w-full text-left">
+          <thead class="bg-gray-200">
+            <tr>
+              <th class="p-3">User's Name</th>
+              <th class="p-3">ID</th>
+              <th class="p-3">Action</th>
+            </tr>
+          </thead>
+          <tbody id="user-table-body">
+            <!-- Rows will be dynamically inserted here -->
+          </tbody>
+        </table>
       </div>
 
-      <!-- Form -->
-      <form class="bg-white p-8 rounded-xl shadow-md max-w-3xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Patient Name -->
-          <div class="relative">
-            <input
-              type="text"
-              placeholder="Patient's name"
-              class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2c698d]"
-            />
-            <p id="nameError" class="text-red-500 text-sm mt-1 hidden">
-              You've reached max characters!
-            </p>
-            <div class="absolute left-3 top-2.5 text-gray-500">👤</div>
-          </div>
-
-          <!-- ID -->
-          <div class="relative">
-            <input
-              type="text"
-              placeholder="Patient ID"
-              class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2c698d]"
-            />
-            <p id="idError" class="text-red-500 text-sm mt-1 hidden">
-              You've reached max digits!
-            </p>
-            <div class="absolute left-3 top-2.5 text-gray-500">🆔</div>
-          </div>
-
-          <!-- Phone -->
-          <div class="relative">
-            <span class="absolute left-3 top-2.5 text-gray-500"
-              >📞&nbsp;+98</span
-            >
-            <input
-              type="tel"
-              placeholder="9123456789"
-              class="w-full pl-20 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2c698d]"
-            />
-            <p id="phoneError" class="text-red-500 text-sm mt-1 hidden">
-              You've reached max digits!
-            </p>
-          </div>
-
-          <!-- Date of Birth -->
-          <div class="relative">
-            <input
-              type="date"
-              class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2c698d]"
-            />
-            <div class="absolute left-3 top-2.5 text-gray-500">🎂</div>
-          </div>
-        </div>
-
-        <!-- Notes -->
-        <div class="mt-6">
-          <label class="block text-gray-700 font-semibold mb-2"
-            >Doctor's notes</label
-          >
-          <textarea
-            placeholder="Add note"
-            rows="4"
-            class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#2c698d]"
-          ></textarea>
-        </div>
-
-        <!-- Submit Button -->
-        <div class="mt-6 text-right">
-          <button
-            type="submit"
-            class="bg-[#2c698d] hover:bg-[#1e4f66] text-white font-semibold py-2 px-6 rounded-lg shadow-md transition duration-200"
-          >
-            Submit
-          </button>
-        </div>
-      </form>
+      <!-- Floating Button -->
+      <a href="newuser.html">
+        <button
+          id="new-user-btn"
+          class="fixed bottom-6 right-6 bg-[#2c698d] text-white px-4 py-2 rounded-full flex items-center shadow-lg hover:bg-[#1e4f66]"
+        >
+          <span class="text-xl mr-2">+</span> New user
+        </button>
+      </a>
     </main>
     <!-- Users Modal -->
     <div

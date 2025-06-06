@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="./output.css" rel="stylesheet" />
-    <title>New Patient</title>
+    <title>New Receptionist</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -93,7 +93,9 @@
           class="mx-auto w-16 h-16"
         />
         <h2 class="text-3xl font-bold mt-4">DentalCareHub</h2>
-        <h1 class="text-xl font-semibold text-gray-700 mt-1">New Patient</h1>
+        <h1 class="text-xl font-semibold text-gray-700 mt-1">
+          New Receptionist
+        </h1>
       </div>
 
       <!-- Form -->
@@ -103,7 +105,7 @@
           <div class="relative">
             <input
               type="text"
-              placeholder="Patient's name"
+              placeholder="Receptionist's name"
               class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2c698d]"
             />
             <p id="nameError" class="text-red-500 text-sm mt-1 hidden">
@@ -116,13 +118,26 @@
           <div class="relative">
             <input
               type="text"
-              placeholder="Patient ID"
+              placeholder="Receptionist ID"
               class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2c698d]"
             />
             <p id="idError" class="text-red-500 text-sm mt-1 hidden">
               You've reached max digits!
             </p>
             <div class="absolute left-3 top-2.5 text-gray-500">🆔</div>
+          </div>
+
+          <!-- Password -->
+          <div class="relative">
+            <input
+              type="text"
+              placeholder="Password"
+              class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2c698d]"
+            />
+            <p id="idError" class="text-red-500 text-sm mt-1 hidden">
+              You've reached max digits!
+            </p>
+            <div class="absolute left-3 top-2.5 text-gray-500">🗝</div>
           </div>
 
           <!-- Phone -->
@@ -148,18 +163,6 @@
             />
             <div class="absolute left-3 top-2.5 text-gray-500">🎂</div>
           </div>
-        </div>
-
-        <!-- Notes -->
-        <div class="mt-6">
-          <label class="block text-gray-700 font-semibold mb-2"
-            >Doctor's notes</label
-          >
-          <textarea
-            placeholder="Add note"
-            rows="4"
-            class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#2c698d]"
-          ></textarea>
         </div>
 
         <!-- Submit Button -->

@@ -52,7 +52,7 @@
               <p class="text-nowrap">New Patient</p>
             </div>
           </a>
-          <a href="#">
+          <a href="managerpatientlist.html">
             <div
               id="box3"
               class="flex flex-col items-center bg-white shadow-md p-4 rounded-md text-center hover:border-2 hover:border-blue-500 transition"
@@ -83,15 +83,6 @@
               id="box5"
               class="flex flex-col items-center bg-white shadow-md p-4 rounded-md text-center hover:border-2 hover:border-blue-500 transition"
             >
-              <img src="../pictures/Inbox.png" alt="Box pic" class="w-[68px]" />
-              <p>Inbox</p>
-            </div>
-          </a>
-          <a href="">
-            <div
-              id="box6"
-              class="flex flex-col items-center bg-white shadow-md p-4 rounded-md text-center hover:border-2 hover:border-blue-500 transition"
-            >
               <img
                 src="../pictures/Payment.png"
                 alt="Payment pic"
@@ -102,7 +93,7 @@
           </a>
           <a href="">
             <div
-              id="box7"
+              id="box6"
               class="flex flex-col items-center bg-white shadow-md p-4 rounded-md text-center hover:border-2 hover:border-blue-500 transition"
             >
               <img
@@ -115,7 +106,7 @@
           </a>
           <a href="">
             <div
-              id="box8"
+              id="box7"
               class="flex flex-col items-center bg-white shadow-md p-4 rounded-md text-center hover:border-2 hover:border-blue-500 transition"
             >
               <img
@@ -129,5 +120,48 @@
         </div>
       </div>
     </main>
+    <!-- Modal -->
+    <div
+      id="userModal"
+      class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50"
+    >
+      <div class="bg-white p-6 rounded-lg shadow-md w-80">
+        <h3 class="text-xl font-semibold mb-4">Select an option</h3>
+        <div class="flex flex-col space-y-3">
+          <a
+            href="newuser.html"
+            class="bg-[#2c698d] text-white px-4 py-2 rounded hover:bg-[#1e4f66]"
+            >New User</a
+          >
+          <a
+            href="userlist.html"
+            class="bg-[#2c698d] text-white px-4 py-2 rounded hover:bg-[#1e4f66]"
+            >Users List</a
+          >
+          <button
+            onclick="closeModal()"
+            class="text-red-500 mt-2 hover:underline"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const userBox = document.getElementById("box4");
+      const modal = document.getElementById("userModal");
+
+      userBox.addEventListener("click", function (e) {
+        e.preventDefault(); // prevent default <a href=""> action
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+      });
+
+      function closeModal() {
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+      }
+    </script>
   </body>
 </html>
