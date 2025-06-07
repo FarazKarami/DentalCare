@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="./output.css" rel="stylesheet" />
-    <title>New Patient</title>
+    <link href="../../assets/output.css" rel="stylesheet" />
+    <title>Edit Patient</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -13,64 +13,71 @@
   </head>
   <body class="bg-gray-50 font-inter flex flex-col md:flex-row min-h-screen">
     <aside
-      id="receptionistNavBar"
+      id="managerNavBar"
       class="hidden md:w-[250px] bg-[#2c698d] text-white md:flex md:flex-col justify-between"
     >
       <div>
         <div class="flex flex-col items-center md:py-6">
           <img
-            src="../pictures/Doctor.png"
+            src="../../../pictures/Doctor.png"
             alt="A Doctor pic"
             class="w-20 h-20 md:mb-2 rounded-full"
           />
           <p class="text-md">Have A Nice Day</p>
-          <h2 class="font-bold">receptionist</h2>
+          <h2 class="font-bold">Manager</h2>
         </div>
         <nav class="px-4 gap-[10px]">
           <a
-            href="receptionistpage.html"
+            href="../../managerpage.html"
             class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
           >
             <span class="material-icons">home</span><span>Home</span>
           </a>
           <a
-            href="receptionistappointment.html"
+            href="../appointments/managerappointment.html"
             class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
           >
             <span class="material-icons">event_note</span
             ><span>Appointments</span>
           </a>
           <a
-            href="receptionistnewpatient.html"
+            href="../patients/managernewpatient.html"
             class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
           >
             <span class="material-icons">person_add</span
             ><span>New Patient</span>
           </a>
           <a
-            href="receptionistpatientlist.html"
+            href="../patients/managerpatientlist.html"
             class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
           >
             <span class="material-icons">format_list_bulleted</span
             ><span>Patients List</span>
           </a>
           <a
-            href="receptionistpayment.html"
+            href="#"
+            id="usersSidebarLink"
+            class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
+          >
+            <span class="material-icons">group</span><span>Users</span>
+          </a>
+          <a
+            href="../payment/managerpayment.html"
             class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
           >
             <span class="material-icons">payment</span><span>Payments</span>
           </a>
           <a
-            href="#"
+            href="../prices/managerprice.html"
             class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
           >
-            <span class="material-icons">money</span><span>Expenses</span>
+            <span class="material-icons">money</span><span>Prices</span>
           </a>
         </nav>
       </div>
       <div class="px-4">
         <a
-          href="index.html"
+          href="../../index.html"
           class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
         >
           <span class="material-icons">logout</span>
@@ -86,7 +93,7 @@
           class="mx-auto w-16 h-16"
         />
         <h2 class="text-3xl font-bold mt-4">DentalCareHub</h2>
-        <h1 class="text-xl font-semibold text-gray-700 mt-1">New Patient</h1>
+        <h1 class="text-xl font-semibold text-gray-700 mt-1">Edit Patient</h1>
       </div>
 
       <!-- Form -->
@@ -166,5 +173,56 @@
         </div>
       </form>
     </main>
+    <!-- Users Modal -->
+    <div
+      id="usersModal"
+      class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50"
+    >
+      <div class="bg-white p-6 rounded-lg shadow-lg w-80">
+        <h3 class="text-xl font-semibold mb-4 text-center">User Options</h3>
+        <div class="flex flex-col space-y-3">
+          <a
+            href="../users/newuser.html"
+            class="bg-[#2c698d] text-white text-center py-2 rounded hover:bg-[#1e4f66]"
+            >New User</a
+          >
+          <a
+            href="../users/userlist.html"
+            class="bg-[#2c698d] text-white text-center py-2 rounded hover:bg-[#1e4f66]"
+            >Users List</a
+          >
+          <button
+            onclick="closeUsersModal()"
+            class="text-red-500 mt-2 hover:underline"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const usersLink = document.getElementById("usersSidebarLink");
+      const usersModal = document.getElementById("usersModal");
+
+      usersLink.addEventListener("click", function (e) {
+        e.preventDefault(); // prevent default <a> behavior
+        usersModal.classList.remove("hidden");
+        usersModal.classList.add("flex");
+      });
+
+      function closeUsersModal() {
+        usersModal.classList.add("hidden");
+        usersModal.classList.remove("flex");
+      }
+
+      // Optional: close modal when clicking outside it
+      window.addEventListener("click", function (e) {
+        if (e.target === usersModal) {
+          closeUsersModal();
+        }
+      });
+    </script>
+    <script src="newpatient.js"></script>
   </body>
 </html>

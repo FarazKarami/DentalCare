@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="./output.css" rel="stylesheet" />
-    <title>Receptionist List</title>
+    <link href="../../assets/output.css" rel="stylesheet" />
+    <title>Patients List</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -19,7 +19,7 @@
       <div>
         <div class="flex flex-col items-center md:py-6">
           <img
-            src="../pictures/Doctor.png"
+            src="../../../pictures/Doctor.png"
             alt="A Doctor pic"
             class="w-20 h-20 md:mb-2 rounded-full"
           />
@@ -28,27 +28,27 @@
         </div>
         <nav class="px-4 gap-[10px]">
           <a
-            href="managerpage.html"
+            href="../../managerpage.html"
             class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
           >
             <span class="material-icons">home</span><span>Home</span>
           </a>
           <a
-            href="managerappointment.html"
+            href="../appointments/managerappointment.html"
             class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
           >
             <span class="material-icons">event_note</span
             ><span>Appointments</span>
           </a>
           <a
-            href="managernewpatient.html"
+            href="../patients/managernewpatient.html"
             class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
           >
             <span class="material-icons">person_add</span
             ><span>New Patient</span>
           </a>
           <a
-            href="managerpatientlist.html"
+            href="../patients/managerpatientlist.html"
             class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
           >
             <span class="material-icons">format_list_bulleted</span
@@ -62,22 +62,22 @@
             <span class="material-icons">group</span><span>Users</span>
           </a>
           <a
-            href="managerpayment.html"
+            href="../payment/managerpayment.html"
             class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
           >
             <span class="material-icons">payment</span><span>Payments</span>
           </a>
           <a
-            href="#"
+            href="../prices/managerprice.html"
             class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
           >
-            <span class="material-icons">money</span><span>Expenses</span>
+            <span class="material-icons">money</span><span>Prices</span>
           </a>
         </nav>
       </div>
       <div class="px-4">
         <a
-          href="index.html"
+          href="../../index.html"
           class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
         >
           <span class="material-icons">logout</span>
@@ -88,32 +88,33 @@
 
     <main class="flex-1 bg-gray-100 p-8">
       <div class="flex justify-between items-center mb-6">
-        <h1 class="text-3xl font-semibold text-[#2c3e50]">Users List</h1>
+        <h1 class="text-3xl font-semibold text-[#2c3e50]">Patients List</h1>
       </div>
       <div class="bg-white shadow rounded-lg overflow-hidden">
         <table class="w-full text-left">
           <thead class="bg-gray-200">
             <tr>
-              <th class="p-3">User's Name</th>
-              <th class="p-3">ID</th>
+              <th class="p-3">Patient Name</th>
+              <th class="p-3">Phone Number</th>
               <th class="p-3">Action</th>
             </tr>
           </thead>
-          <tbody id="user-table-body">
+          <tbody id="patient-table-body">
             <!-- Rows will be dynamically inserted here -->
           </tbody>
         </table>
       </div>
 
       <!-- Floating Button -->
-      <a href="newuser.html">
-        <button
-          id="new-user-btn"
-          class="fixed bottom-6 right-6 bg-[#2c698d] text-white px-4 py-2 rounded-full flex items-center shadow-lg hover:bg-[#1e4f66]"
-        >
-          <span class="text-xl mr-2">+</span> New user
-        </button>
-      </a>
+       <a href="managernewpatient.html">
+           <button
+             id="new-patient-btn"
+             class="fixed bottom-6 right-6 bg-[#2c698d] text-white px-4 py-2 rounded-full flex items-center shadow-lg hover:bg-[#1e4f66]"
+           >
+             <span class="text-xl mr-2">+</span> New Patient
+           </button>
+
+       </a>
     </main>
     <!-- Users Modal -->
     <div
@@ -124,12 +125,12 @@
         <h3 class="text-xl font-semibold mb-4 text-center">User Options</h3>
         <div class="flex flex-col space-y-3">
           <a
-            href="newuser.html"
+            href="../users/newuser.html"
             class="bg-[#2c698d] text-white text-center py-2 rounded hover:bg-[#1e4f66]"
             >New User</a
           >
           <a
-            href="userlist.html"
+            href="../users/userlist.html"
             class="bg-[#2c698d] text-white text-center py-2 rounded hover:bg-[#1e4f66]"
             >Users List</a
           >
@@ -157,6 +158,15 @@
         usersModal.classList.add("hidden");
         usersModal.classList.remove("flex");
       }
+
+      // Optional: close modal when clicking outside it
+      window.addEventListener("click", function (e) {
+        if (e.target === usersModal) {
+          closeUsersModal();
+        }
+      });
     </script>
+    <script src="newpatient.js"></script>
+    <script src="patientlist.js"></script>
   </body>
 </html>

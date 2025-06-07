@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="./output.css" rel="stylesheet" />
+    <link href="../../assets/output.css" rel="stylesheet" />
     <title>Appointments</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
@@ -19,58 +19,58 @@
       <div>
         <div class="flex flex-col items-center md:py-6">
           <img
-            src="../pictures/Doctor.png"
+            src="../../../pictures/Doctor.png"
             alt="A Doctor pic"
             class="w-20 h-20 md:mb-2 rounded-full"
           />
           <p class="text-md">Have A Nice Day</p>
-          <h2 class="font-bold">receptionist</h2>
+          <h2 class="font-bold">Receptionist</h2>
         </div>
         <nav class="px-4 gap-[10px]">
           <a
-            href="receptionistpage.html"
+            href="../../receptionistpage.html"
             class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
           >
             <span class="material-icons">home</span><span>Home</span>
           </a>
           <a
-            href="receptionistappointment.html"
+            href="../appointments/receptionistappointment.html"
             class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
           >
             <span class="material-icons">event_note</span
             ><span>Appointments</span>
           </a>
           <a
-            href="receptionistnewpatient.html"
+            href="../patients/receptionistnewpatient.html"
             class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
           >
             <span class="material-icons">person_add</span
             ><span>New Patient</span>
           </a>
           <a
-            href="receptionistpatientlist.html"
+            href="../patients/receptionistpatientlist.html"
             class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
           >
             <span class="material-icons">format_list_bulleted</span
             ><span>Patients List</span>
           </a>
           <a
-            href="receptionistpayment.html"
+            href="../payment/receptionistpayment.html"
             class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
           >
             <span class="material-icons">payment</span><span>Payments</span>
           </a>
           <a
-            href="#"
+            href="../prices/receptionistprice.html"
             class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
           >
-            <span class="material-icons">money</span><span>Expenses</span>
+            <span class="material-icons">money</span><span>Prices</span>
           </a>
         </nav>
       </div>
       <div class="px-4">
         <a
-          href="index.html"
+          href="../../index.html"
           class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
         >
           <span class="material-icons">logout</span>
@@ -82,25 +82,7 @@
     <main class="flex-1 bg-gray-100 p-8">
       <div class="flex justify-between items-center mb-6">
         <h2 class="text-3xl font-semibold text-[#2c3e50]">Appointments</h2>
-        <select
-          id="date-filter"
-          class="border border-gray-300 rounded px-3 py-1"
-        >
-          <option value="today">Today</option>
-          <option value="this-week">This Week</option>
-          <option value="custom">Custom Range</option>
-        </select>
       </div>
-
-      <div id="custom-range" class="mb-4 hidden">
-        <input
-          id="start-date"
-          type="date"
-          class="border px-2 py-1 rounded mr-2"
-        />
-        <input id="end-date" type="date" class="border px-2 py-1 rounded" />
-      </div>
-
       <div class="bg-white shadow rounded-lg overflow-hidden">
         <table class="w-full text-left">
           <thead class="bg-gray-200">
@@ -217,5 +199,6 @@
         </form>
       </div>
     </div>
+    <script src="appointment.js"></script>
   </body>
 </html>

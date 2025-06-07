@@ -3,15 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="./output.css" rel="stylesheet" />
-    <title>Payments</title>
+    <link href="../../assets/output.css" rel="stylesheet" />
+    <title>New Receptionist</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
   </head>
-  <body class="flex h-screen font-sans">
+  <body class="bg-gray-50 font-inter flex flex-col md:flex-row min-h-screen">
     <aside
       id="managerNavBar"
       class="hidden md:w-[250px] bg-[#2c698d] text-white md:flex md:flex-col justify-between"
@@ -19,7 +19,7 @@
       <div>
         <div class="flex flex-col items-center md:py-6">
           <img
-            src="../pictures/Doctor.png"
+            src="../../../pictures/Doctor.png"
             alt="A Doctor pic"
             class="w-20 h-20 md:mb-2 rounded-full"
           />
@@ -28,27 +28,27 @@
         </div>
         <nav class="px-4 gap-[10px]">
           <a
-            href="managerpage.html"
+            href="../../managerpage.html"
             class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
           >
             <span class="material-icons">home</span><span>Home</span>
           </a>
           <a
-            href="managerappointment.html"
+            href="../appointments/managerappointment.html"
             class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
           >
             <span class="material-icons">event_note</span
             ><span>Appointments</span>
           </a>
           <a
-            href="managernewpatient.html"
+            href="../patients/managernewpatient.html"
             class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
           >
             <span class="material-icons">person_add</span
             ><span>New Patient</span>
           </a>
           <a
-            href="managerpatientlist.html"
+            href="../patients/managerpatientlist.html"
             class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
           >
             <span class="material-icons">format_list_bulleted</span
@@ -62,22 +62,22 @@
             <span class="material-icons">group</span><span>Users</span>
           </a>
           <a
-            href="managerpayment.html"
+            href="../payment/managerpayment.html"
             class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
           >
             <span class="material-icons">payment</span><span>Payments</span>
           </a>
           <a
-            href="#"
+            href="../prices/managerprice.html"
             class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
           >
-            <span class="material-icons">money</span><span>Expenses</span>
+            <span class="material-icons">money</span><span>Prices</span>
           </a>
         </nav>
       </div>
       <div class="px-4">
         <a
-          href="index.html"
+          href="../../index.html"
           class="flex items-center space-x-2 md:py-2 hover:bg-[#1e4f66] rounded px-2"
         >
           <span class="material-icons">logout</span>
@@ -85,45 +85,97 @@
         </a>
       </div>
     </aside>
-    <!-- Main Content -->
-    <main class="flex-1 p-8 overflow-y-auto">
-      <!-- Logo and Header -->
-      <div class="text-center">
-        <h2 class="text-2xl font-bold mt-4">DentalCareHub</h2>
+    <main class="flex-1 p-10">
+      <div class="text-center mb-8">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/716/716784.png"
+          alt="folder"
+          class="mx-auto w-16 h-16"
+        />
+        <h2 class="text-3xl font-bold mt-4">DentalCareHub</h2>
+        <h1 class="text-xl font-semibold text-gray-700 mt-1">
+          New Receptionist
+        </h1>
       </div>
 
-      <!-- Account Statement -->
-      <section
-        class="bg-white rounded-lg shadow-md mt-10 p-6 max-w-4xl mx-auto"
-      >
-        <div class="flex items-center justify-between mb-6">
-          <h2 class="text-xl font-semibold text-[#2c6c88]">Payments</h2>
-          <button class="text-[#2c6c88] text-2xl">🧮</button>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-center">
-          <!-- Sessions -->
-          <div class="bg-blue-100 rounded-lg p-4 border-t-4 border-blue-500">
-            <div class="text-blue-700 font-semibold mb-1">
-              Number of Sessions
-            </div>
-            <div id="sessionCount" class="text-2xl font-bold text-blue-600">
-              0
-            </div>
-          </div>
-          <!-- Total Payment -->
-          <div class="bg-green-100 rounded-lg p-4 border-t-4 border-green-500">
-            <div class="text-green-700 font-semibold mb-1">Total Payment</div>
-            <div id="totalPayment" class="text-2xl font-bold text-green-600">
-              $0.00
-            </div>
+      <!-- Form -->
+      <form class="bg-white p-8 rounded-xl shadow-md max-w-3xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Patient Name -->
+          <div class="relative">
+            <input
+              type="text"
+              placeholder="Receptionist's name"
+              class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2c698d]"
+            />
+            <p id="nameError" class="text-red-500 text-sm mt-1 hidden">
+              You've reached max characters!
+            </p>
+            <div class="absolute left-3 top-2.5 text-gray-500">👤</div>
           </div>
 
-          <div id="errorMessage" class="text-red-600 text-sm mt-2"></div>
+          <!-- ID -->
+          <div class="relative">
+            <input
+              type="text"
+              placeholder="Receptionist ID"
+              class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2c698d]"
+            />
+            <p id="idError" class="text-red-500 text-sm mt-1 hidden">
+              You've reached max digits!
+            </p>
+            <div class="absolute left-3 top-2.5 text-gray-500">🆔</div>
+          </div>
+
+          <!-- Password -->
+          <div class="relative">
+            <input
+              type="text"
+              placeholder="Password"
+              class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2c698d]"
+            />
+            <p id="idError" class="text-red-500 text-sm mt-1 hidden">
+              You've reached max digits!
+            </p>
+            <div class="absolute left-3 top-2.5 text-gray-500">🗝</div>
+          </div>
+
+          <!-- Phone -->
+          <div class="relative">
+            <span class="absolute left-3 top-2.5 text-gray-500"
+              >📞&nbsp;+98</span
+            >
+            <input
+              type="tel"
+              placeholder="9123456789"
+              class="w-full pl-20 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2c698d]"
+            />
+            <p id="phoneError" class="text-red-500 text-sm mt-1 hidden">
+              You've reached max digits!
+            </p>
+          </div>
+
+          <!-- Date of Birth -->
+          <div class="relative">
+            <input
+              type="date"
+              class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2c698d]"
+            />
+            <div class="absolute left-3 top-2.5 text-gray-500">🎂</div>
+          </div>
         </div>
-      </section>
+
+        <!-- Submit Button -->
+        <div class="mt-6 text-right">
+          <button
+            type="submit"
+            class="bg-[#2c698d] hover:bg-[#1e4f66] text-white font-semibold py-2 px-6 rounded-lg shadow-md transition duration-200"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
     </main>
-
     <!-- Users Modal -->
     <div
       id="usersModal"
@@ -133,12 +185,12 @@
         <h3 class="text-xl font-semibold mb-4 text-center">User Options</h3>
         <div class="flex flex-col space-y-3">
           <a
-            href="newuser.html"
+            href="../users/newuser.html"
             class="bg-[#2c698d] text-white text-center py-2 rounded hover:bg-[#1e4f66]"
             >New User</a
           >
           <a
-            href="userlist.html"
+            href="../users/userlist.html"
             class="bg-[#2c698d] text-white text-center py-2 rounded hover:bg-[#1e4f66]"
             >Users List</a
           >
