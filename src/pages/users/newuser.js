@@ -11,21 +11,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const id = idInput.value.trim();
     const phone = phoneInput.value.trim();
 
-    if (/\d/.test(name)) {
-      errorEl.textContent = "Name cannot contain numbers.";
+    // Front-end validations...
+    if (!/^[A-Za-z\s]{1,50}$/.test(name)) {
+      alert("Please use only English letters for the name.");
       return;
     }
 
-    if (!/^\d{10}$/.test(id)) {
-      errorEl.textContent = "ID must be exactly 10 digits.";
+    if (!/^\d{5,10}$/.test(id)) {
+      alert("ID must be 5 to 10 digits.");
       return;
     }
 
     if (!/^\d{10}$/.test(phone)) {
-      errorEl.textContent = "Phone number must be exactly 10 digits.";
+      alert("Phone must be 10 digits.");
       return;
     }
-
     try {
       // Check if user with this ID already exists
       const res = await fetch(`/api/users?id=${id}`);
@@ -55,6 +55,37 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (err) {
       console.error("Failed to save user:", err);
       errorEl.textContent = "Error saving user.";
+    }
+  });
+  // Only English letters and spaces in name
+  nameInput.addEventListener("input", () => {
+    nameInput.value = nameInput.value.replace(/[^a-zA-Z\s]/g, "");
+    if (nameInput.value.length > 50) {
+      nameError.classList.remove("hidden");
+    } else {
+      nameError.classList.add("hidden");
+    }
+  });
+
+  // Only numbers in ID
+  idInput.addEventListener("input", () => {
+    idInput.value = idInput.value.replace(/\D/g, "");
+    if (idInput.value.length != 10) {
+      idError.textContent = "ID number must be exactly 10 digits.";
+      idError.classList.remove("hidden");
+    } else {
+      idError.classList.add("hidden");
+    }
+  });
+
+  // Only numbers in phone number
+  phoneInput.addEventListener("input", () => {
+    phoneInput.value = phoneInput.value.replace(/\D/g, "");
+    if (phoneInput.value.length != 10) {
+      phoneError.textContent = "Phone number must be exactly 10 digits.";
+      phoneError.classList.remove("hidden");
+    } else {
+      phoneError.classList.add("hidden");
     }
   });
 });

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="../../assets/output.css" rel="stylesheet" />
-    <title>New Receptionist</title>
+    <title>Edit User</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -93,22 +93,23 @@
           class="mx-auto w-16 h-16"
         />
         <h2 class="text-3xl font-bold mt-4">DentalCareHub</h2>
-        <h1 class="text-xl font-semibold text-gray-700 mt-1">
-          New Receptionist
-        </h1>
+        <h1 class="text-xl font-semibold text-gray-700 mt-1">Edit Patient</h1>
       </div>
 
       <!-- Form -->
-      <form id="newUserForm" class="bg-white p-8 rounded-xl shadow-md max-w-3xl mx-auto">
+      <form
+        id="editUserForm"
+        class="bg-white p-8 rounded-xl shadow-md max-w-3xl mx-auto"
+      >
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <!-- Name -->
           <div class="relative">
             <input
-  id="userName"
-  type="text"
-  placeholder="Receptionist's name"
-  class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2c698d]"
-/>
+              id="userName"
+              type="text"
+              placeholder="Receptionist's name"
+              class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2c698d]"
+            />
             <p id="nameError" class="text-red-500 text-sm mt-1 hidden">
               You've reached max characters!
             </p>
@@ -118,11 +119,11 @@
           <!-- ID -->
           <div class="relative">
             <input
-  id="userId"
-  type="text"
-  placeholder="Receptionist ID"
-  class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2c698d]"
-/>
+              id="userId"
+              type="text"
+              placeholder="Receptionist ID"
+              class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2c698d]"
+            />
             <p id="idError" class="text-red-500 text-sm mt-1 hidden">
               You've reached max digits!
             </p>
@@ -148,11 +149,11 @@
               >📞&nbsp;+98</span
             >
             <input
-  id="userPhone"
-  type="tel"
-  placeholder="9123456789"
-  class="w-full pl-20 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2c698d]"
-/>
+              id="userPhone"
+              type="tel"
+              placeholder="9123456789"
+              class="w-full pl-20 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2c698d]"
+            />
             <p id="phoneError" class="text-red-500 text-sm mt-1 hidden">
               You've reached max digits!
             </p>
@@ -229,6 +230,6 @@
         }
       });
     </script>
-    <script src="newuser.js"></script>
+    <script src="newpatient.js"></script>
   </body>
 </html>
