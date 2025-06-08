@@ -52,13 +52,26 @@ const phoneError = document.getElementById("phoneError");
   }
 
   // 🟢 If everything is valid and ID is new, proceed
-  // Save to localStorage
-const patients = JSON.parse(localStorage.getItem("patients") || "[]");
-patients.push({ id, name, phone, dob, notes });
-localStorage.setItem("patients", JSON.stringify(patients));
+// Send to backend
+try {
+  const response = await fetch("/api/patients", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ id, name, phone, dob, notes }),
+  });
 
-alert("Form submitted successfully!");
-window.location.href = "managerpatientlist.html";
+  if (!response.ok) {
+    throw new Error("Failed to save patient.");
+  }
+
+  alert("Form submitted successfully!");
+  window.location.href = "managerpatientlist.html";
+} catch (error) {
+  console.error("Submission error:", error);
+  alert("Failed to submit. Please try again.");
+}
   
   // Reset form if needed
   idInput.value = "";
