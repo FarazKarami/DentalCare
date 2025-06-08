@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   let users = [];
 
   try {
-    const res = await fetch("/api/users");
+    const res = await fetch("http://localhost:3000/api/users/");
     users = await res.json();
     users.sort((a, b) => a.name.localeCompare(b.name));
   } catch (err) {

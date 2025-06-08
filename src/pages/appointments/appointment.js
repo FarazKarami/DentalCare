@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Load all appointments from backend on page load
   async function loadAppointments() {
     try {
-      const response = await fetch("/api/appointments");
+      const response = await fetch("http://localhost:3000/api/appointments");
       const appointments = await response.json();
 
       tableBody.innerHTML = "";
@@ -65,9 +65,12 @@ document.addEventListener("DOMContentLoaded", () => {
       const id = deleteBtn.dataset.id;
       if (confirm("Are you sure you want to delete this appointment?")) {
         try {
-          const response = await fetch(`/api/appointments/${id}`, {
-            method: "DELETE",
-          });
+          const response = await fetch(
+            `http://localhost:3000/api/appointments${id}`,
+            {
+              method: "DELETE",
+            }
+          );
           if (response.ok) {
             row.remove();
           } else {
@@ -102,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const patientName = document.getElementById("patient-name").value.trim();
+    const patientId = document.getElementById("patient-id").value.trim();
     const appointmentDate = document.getElementById("appointment-date").value;
     const appointmentTime = document.getElementById("appointment-time").value;
     const dentist = form.elements[3].value;
@@ -111,30 +114,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       // Verify patient exists
-      const checkResponse = await fetch(`/api/check-patient?name=${encodeURIComponent(patientName)}`);
-      const checkData = await checkResponse.json();
-
-      if (!checkData.exists) {
+      const checkResponse = await fetch(`/api/patients/${patientId}`);
+      if (!checkResponse.ok) {
         alert("Error: Patient not found in the database.");
         return;
       }
 
+      const patientData = await checkResponse.json();
+      const patientName = patientData.name;
+
       const appointmentData = {
-        patientName,
-        date: appointmentDate,
-        time: appointmentTime,
-        dentist,
-        treatment,
-        status,
-      };
+  patientName,
+  date: appointmentDate,
+  time: appointmentTime,
+  dentist,
+  treatment,
+  status,
+};
 
       if (editAppointmentId) {
         // Edit existing appointment - PUT
-        const response = await fetch(`/api/appointments/${editAppointmentId}`, {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(appointmentData),
-        });
+        const response = await fetch(
+          `http://localhost:3000/api/appointments/${editAppointmentId}`,
+          {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(appointmentData),
+          }
+        );
 
         if (!response.ok) {
           alert("Failed to update appointment.");
@@ -143,7 +150,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Update the row in the table
         const rows = Array.from(tableBody.querySelectorAll("tr"));
-        const rowToUpdate = rows.find(row => row.querySelector(".edit-btn").dataset.id === editAppointmentId);
+        const rowToUpdate = rows.find(
+          (row) =>
+            row.querySelector(".edit-btn").dataset.id === editAppointmentId
+        );
         if (rowToUpdate) {
           rowToUpdate.children[0].textContent = patientName;
           rowToUpdate.children[1].textContent = appointmentDate;
@@ -152,10 +162,9 @@ document.addEventListener("DOMContentLoaded", () => {
           rowToUpdate.children[4].textContent = treatment;
           rowToUpdate.children[5].textContent = status;
         }
-
       } else {
         // Add new appointment - POST
-        const response = await fetch("/api/appointments", {
+        const response = await fetch("http://localhost:3000/api/appointments", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(appointmentData),
@@ -174,7 +183,6 @@ document.addEventListener("DOMContentLoaded", () => {
       modal.classList.add("hidden");
       modal.classList.remove("flex");
       sortAppointments();
-
     } catch (error) {
       alert("Error processing appointment.");
       console.error(error);
@@ -184,13 +192,17 @@ document.addEventListener("DOMContentLoaded", () => {
   function sortAppointments() {
     const rows = Array.from(tableBody.querySelectorAll("tr"));
     rows.sort((a, b) => {
-      const aDate = new Date(`${a.children[1].textContent}T${a.children[2].textContent}`);
-      const bDate = new Date(`${b.children[1].textContent}T${b.children[2].textContent}`);
+      const aDate = new Date(
+        `${a.children[1].textContent}T${a.children[2].textContent}`
+      );
+      const bDate = new Date(
+        `${b.children[1].textContent}T${b.children[2].textContent}`
+      );
       return aDate - bDate;
     });
 
     tableBody.innerHTML = "";
-    rows.forEach(row => tableBody.appendChild(row));
+    rows.forEach((row) => tableBody.appendChild(row));
   }
 
   // Initial load

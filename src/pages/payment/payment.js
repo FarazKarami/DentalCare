@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const errorElement = document.getElementById("errorMessage");
 
   // Replace this with your actual backend URL
-  const apiURL = "http://your-backend-api.com/appointments/summary";
+  const apiURL = "http://localhost:3000/api/payments";
 
   fetch(apiURL)
     .then(response => {
